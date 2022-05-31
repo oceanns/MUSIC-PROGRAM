@@ -1,3 +1,5 @@
+
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -12,12 +14,19 @@ AudioPlayer song1;
 void setup() 
 {
   minim = new Minim(this);
-  song1 = minim.loadFile("MusicDownload");
+  song1 = minim.loadFile("MusicDownload/groove.mp3");
 }//End setup
 //
-void draw() {}//End draw
+void draw() {
+  if ( song1.isLooping() ) println("There are", song1.loopCount(), "loops left.");
+}//End draw
 //
-void keyPressed() {}//End keyPressed
+void keyPressed() {
+  String keystr = String.valueOf(key); //Must press a number
+  println("Number of Repeats is", keystr); 
+  int loopNum = int(keystr); //Local Variable plays once and loops loopNum of times
+  if ( key=='l' || key=='L' ) song1.loop(loopNum); //Parameter is number of loops
+}//End keyPressed
 //
 void mousePressed() {}//End mousePressed
 //
