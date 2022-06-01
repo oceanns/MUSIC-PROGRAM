@@ -12,12 +12,12 @@ AudioPlayer song1;
 void setup() 
 {
   minim = new Minim(this);
-  song1 = minim.loadFile("MusicDownload/groove.mp3");
+  song1 = minim.loadFile("data/groove.mp3");
 }//End setup
 //
 void draw() {
-  if ( song1.isLooping() ) println("There are", song1.loopCount(), "loops left.");
-  if ( song1.isPlaying() && !song1.isLooping() ) println("Play Once");
+  //if ( song1.isLooping() ) println("There are", song1.loopCount(), "loops left.");
+  //if ( song1.isPlaying() && !song1.isLooping() ) println("Play Once");
 }//End draw
 //
 void keyPressed() {
