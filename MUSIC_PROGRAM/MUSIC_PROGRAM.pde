@@ -1,5 +1,3 @@
-
-
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -19,6 +17,7 @@ void setup()
 //
 void draw() {
   if ( song1.isLooping() ) println("There are", song1.loopCount(), "loops left.");
+  if ( song1.isPlaying() && !song1.isLooping() ) println("Play Once");
 }//End draw
 //
 void keyPressed() {
