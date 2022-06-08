@@ -119,7 +119,7 @@ void keyPressed() {
       } else {
         currentSong++;
       }
-      song[currentSong].play();
+     song[currentSong].play();
     }
   }
   //
@@ -141,7 +141,7 @@ void keyPressed() {
       } else {
         currentSong -= 1;
       }
-      println(currentSong);
+      song[currentSong].play();
     }
   }
     
