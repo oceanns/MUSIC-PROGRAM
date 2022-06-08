@@ -127,24 +127,22 @@ void keyPressed() {
   if ( song[currentSong].isPlaying() ) {
       song[currentSong].pause();
       song[currentSong].rewind();
-      if ( currentSong == numberOfSongs - numberOfSongs ) {
-        currentSong = numberOfSongs - 1;
-      } else {
-        currentSong -= 1; // Equivalent code: currentSong = currentSong - 1
+      if ( currentSong >= numberOfSongs -1 ) {
+        currentSong = numberOfSongs - numberOfSongs;
+    } else { 
+      currentSong++;
       }
-      println(currentSong);
       song[currentSong].play();
     } else {
       song[currentSong].rewind();
-      if ( currentSong == numberOfSongs - numberOfSongs ) {
-        currentSong = numberOfSongs - 1;
+      if (currentSong == numberOfSongs - 1) {
+        currentSong = numberOfSongs - numberOfSongs;
       } else {
-        currentSong -= 1;
+        currentSong++;
       }
-      song[currentSong].play();
+     song[currentSong].play();
     }
   }
-    
 }//End keyPressed
 //
 void mousePressed() {}//End mousePressed
