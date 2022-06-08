@@ -104,13 +104,44 @@ void keyPressed() {
   //
   if (key=='n' || key=='N'); {
     if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      if ( currentSong >= numberOfSongs -1 ) {
+        currentSong = numberOfSongs - numberOfSongs;
     } else { 
+      currentSong++;
+      }
+      song[currentSong].play();
+    } else {
+      song[currentSong].rewind();
       if (currentSong == numberOfSongs - 1) {
         currentSong = numberOfSongs - numberOfSongs;
       } else {
-      
+        currentSong++;
       }
-      currentSong++;
+      song[currentSong].play();
+    }
+  }
+  //
+  if ( key =='b' || key =='B') {
+  if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      if ( currentSong == numberOfSongs - numberOfSongs ) {
+        currentSong = numberOfSongs - 1;
+      } else {
+        currentSong -= 1; // Equivalent code: currentSong = currentSong - 1
+      }
+      println(currentSong);
+      song[currentSong].play();
+    } else {
+      song[currentSong].rewind();
+      if ( currentSong == numberOfSongs - numberOfSongs ) {
+        currentSong = numberOfSongs - 1;
+      } else {
+        currentSong -= 1;
+      }
+      println(currentSong);
     }
   }
     
