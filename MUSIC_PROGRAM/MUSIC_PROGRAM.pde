@@ -145,7 +145,7 @@ void keyPressed() {
   }
   //
  println(key);
-  if ( key=='1' || key=='9') { 
+  if ( key=='1' || key=='9') {
     if (key=='1') println("Looping Once");
     if (key=='9') println("Looping 9 times");
     String keystr = String.valueOf(key); //Must press a number
@@ -154,10 +154,10 @@ void keyPressed() {
     song[currentSong].loop(loopNum); //Parameter is number of loops
     
     // if ( key=='l' || key=='L' ) song1.loop(loopNum); //Parameter is number of loops
-}
+  }
 
   if ( key=='i' || key=='I') song[currentSong].loop();
-  if ( key=='2' || key=='9') println("I do not loop that much press infinite looping");
+  if ( key>='2' || key!='9') println("I do not loop that much press infinite looping");
   //if ( key >= '2' && key!'9' ) println("I donot loop that much, press infinite loop.");
   //
   //mute is similar to pause button
