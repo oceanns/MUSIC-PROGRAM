@@ -24,19 +24,21 @@ PFont titleFont;
   float buttonX5, buttonY5, buttonWidth5, buttonHeight5;
   float buttonX6, buttonY6, buttonWidth6, buttonHeight6;
   float buttonX7, buttonY7, buttonWidth7, buttonHeight7;
+  //
+  PImage pic1, pic2, pic3, pic4, pic5, pic6, pic7;
 //
 void setup()
 {  
-  size(1000,1000);
+  size(1300,1000);
   //
   //play pause
-  buttonX1 = displayWidth*0.1/4;
+  buttonX1 = displayWidth*1.0/4;
   buttonY1 = displayHeight*2/8;
   buttonWidth1 = displayWidth*1/14;
   buttonHeight1 = displayHeight*1/9;
   //
   //forward
-  buttonX2 = displayWidth*0.4/4;
+  buttonX2 = displayWidth*1.3/4;
   buttonY2 = displayHeight*2/8;
   buttonWidth2 = displayWidth*1/14;
   buttonHeight2 = displayHeight*1/9;
@@ -48,26 +50,26 @@ void setup()
   buttonHeight3 = displayHeight*1/9;
   //
   //next
-  buttonX4 = displayWidth*1.0/4;
+  buttonX4 = displayWidth*1.6/4;
   buttonY4 = displayHeight*2/8;
   buttonWidth4 = displayWidth*1/14;
   buttonHeight4 = displayHeight*1/9;
   //
   //back
-  buttonX5 = displayWidth*1.3/4;
+  buttonX5 = displayWidth*0.4/4;
   buttonY5 = displayHeight*2/8;
   buttonWidth5 = displayWidth*1/14;
   buttonHeight5 = displayHeight*1/9;
   //
   //mute
-  buttonX6 = displayWidth*1.6/4;
+  buttonX6 = displayWidth*1.9/4;
   buttonY6 = displayHeight*2/8;
   buttonWidth6 = displayWidth*1/14;
   buttonHeight6 = displayHeight*1/9;
   //
   //loop
-  buttonX7 = displayWidth*1.0/4;
-  buttonY7 = displayHeight*4/8;
+  buttonX7 = displayWidth*2.2/4;
+  buttonY7 = displayHeight*2/8;
   buttonWidth7 = displayWidth*1/14;
   buttonHeight7 = displayHeight*1/9;
   //
@@ -94,7 +96,13 @@ void setup()
   println( "Click the Console to Finish Starting this Program" ); //Review of OS-level button
   println( "Title", songMetaData[currentSong].title() ); //Introduction of Key:Value Pairs (similar to websites)
   //
-  
+  pic1=loadImage("play.png");
+  pic2=loadImage("fastforward.png");
+  pic3=loadImage("rewind.png");
+  pic4=loadImage("skip.png");
+  pic5=loadImage("back.png");
+  pic6=loadImage("replay.png");
+  pic7=loadImage("loop.png");
 }//End setup
 //
 void draw()
@@ -117,7 +125,7 @@ void draw()
   fill(purple); //Ink, hexidecimal copied from Color Selector
   textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
   //Values: [LEFT | CENTER | RIGHT] & [TOP | CENTER | BOTTOM | BASELINE]
-  textFont(titleFont, 8); //Change the number until it fits, largest font size
+  textFont(titleFont, 24); //Change the number until it fits, largest font size
   text( songMetaData[currentSong].title() , width*1/4, height*0, width*1/2, height*1/10);
   fill(255); //Reset to white for rest of the program
   //
@@ -143,7 +151,14 @@ void draw()
     //
    { fill(white);
    rect(buttonX7, buttonY7, buttonWidth7, buttonHeight7); }
-   
+   //
+   image(pic1, buttonX1, buttonY1, buttonWidth1, buttonHeight1);
+   image(pic2, buttonX2, buttonY2, buttonWidth2, buttonHeight2);
+   image(pic3, buttonX3, buttonY3, buttonWidth3, buttonHeight3);
+   image(pic4, buttonX4, buttonY4, buttonWidth4, buttonHeight4);
+   image(pic5, buttonX5, buttonY5, buttonWidth5, buttonHeight5);
+   image(pic6, buttonX6, buttonY6, buttonWidth6, buttonHeight6);
+   image(pic7, buttonX7, buttonY7, buttonWidth7, buttonHeight7);
    
 }//End draw
 //
