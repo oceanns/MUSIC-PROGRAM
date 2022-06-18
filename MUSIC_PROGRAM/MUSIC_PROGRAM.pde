@@ -27,51 +27,52 @@ PFont titleFont;
 //
 void setup()
 {  
-  fullScreen();
+  size(1000,1000);
   //
   //play pause
-  buttonX1 = displayWidth*1/4;
+  buttonX1 = displayWidth*0.1/4;
   buttonY1 = displayHeight*2/8;
-  buttonWidth1 = displayWidth*1/9;
+  buttonWidth1 = displayWidth*1/14;
   buttonHeight1 = displayHeight*1/9;
   //
   //forward
-  buttonX2 = displayWidth*1.5/4;
+  buttonX2 = displayWidth*0.4/4;
   buttonY2 = displayHeight*2/8;
-  buttonWidth2 = displayWidth*1/9;
+  buttonWidth2 = displayWidth*1/14;
   buttonHeight2 = displayHeight*1/9;
   //
   //rewind
-  buttonX3 = displayWidth*2.0/4;
+  buttonX3 = displayWidth*0.7/4;
   buttonY3 = displayHeight*2/8;
-  buttonWidth3 = displayWidth*1/9;
+  buttonWidth3 = displayWidth*1/14;
   buttonHeight3 = displayHeight*1/9;
   //
   //next
-  buttonX4 = displayWidth*2.5/4;
+  buttonX4 = displayWidth*1.0/4;
   buttonY4 = displayHeight*2/8;
-  buttonWidth4 = displayWidth*1/9;
+  buttonWidth4 = displayWidth*1/14;
   buttonHeight4 = displayHeight*1/9;
   //
   //back
-  buttonX5 = displayWidth*3.0/4;
+  buttonX5 = displayWidth*1.3/4;
   buttonY5 = displayHeight*2/8;
-  buttonWidth5 = displayWidth*1/9;
+  buttonWidth5 = displayWidth*1/14;
   buttonHeight5 = displayHeight*1/9;
   //
   //mute
-  buttonX6 = displayWidth*3.5/4;
+  buttonX6 = displayWidth*1.6/4;
   buttonY6 = displayHeight*2/8;
-  buttonWidth6 = displayWidth*1/9;
+  buttonWidth6 = displayWidth*1/14;
   buttonHeight6 = displayHeight*1/9;
   //
   //loop
-  buttonX7 = displayWidth*4/4;
-  buttonY7 = displayHeight*2/8;
-  buttonWidth7 = displayWidth*1/9;
+  buttonX7 = displayWidth*1.0/4;
+  buttonY7 = displayHeight*4/8;
+  buttonWidth7 = displayWidth*1/14;
   buttonHeight7 = displayHeight*1/9;
   //
   //
+  
   //size(500, 600); //Remind you of Display Geometry
   minim = new Minim(this); //load from data directroy, loadFile() should also load from project folder, like loadImage()
   song[currentSong] = minim.loadFile("data/groove.mp3"); //able to pass absolute paths, file name & extesnion, and URL
@@ -93,14 +94,20 @@ void setup()
   println( "Click the Console to Finish Starting this Program" ); //Review of OS-level button
   println( "Title", songMetaData[currentSong].title() ); //Introduction of Key:Value Pairs (similar to websites)
   //
+  
 }//End setup
 //
 void draw()
 {
+  
   //Note: logical operators could be nested IFs
   if ( song[currentSong].isLooping() && song[currentSong].loopCount()!=-1 ) println("There are", song[currentSong].loopCount(), "loops left.");
   if ( song[currentSong].isLooping() && song[currentSong].loopCount()==-1 ) println("Looping Infinitely");
   if ( song[currentSong].isPlaying() && !song[currentSong].isLooping() ) println("Play Once");
+  //
+  
+  
+ 
   //
   println("Current Song:", currentSong);
   println( "Song Position", song[currentSong].position(), "Song Length", song[currentSong].length() );
@@ -111,9 +118,11 @@ void draw()
   textAlign (CENTER, CENTER); //Align X&Y, see Processing.org / Reference
   //Values: [LEFT | CENTER | RIGHT] & [TOP | CENTER | BOTTOM | BASELINE]
   textFont(titleFont, 8); //Change the number until it fits, largest font size
-  text(songMetaData[currentSong].title(), width*1/4, height*0, width*1/2, height*1/10);
+  text( songMetaData[currentSong].title() , width*1/4, height*0, width*1/2, height*1/10);
   fill(255); //Reset to white for rest of the program
   //
+  //
+  
   { fill(white);
     rect(buttonX1, buttonY1, buttonWidth1, buttonHeight1); }
   //
@@ -134,7 +143,8 @@ void draw()
     //
    { fill(white);
    rect(buttonX7, buttonY7, buttonWidth7, buttonHeight7); }
-   //
+   
+   
 }//End draw
 //
 void keyPressed()
@@ -155,6 +165,7 @@ void keyPressed()
     }
   } //End Play-Pause Button
   //
+  
   //Another Play Button, as a finite loop() && infinite loop()
   //Only press a number for this code below
   println(key);
@@ -241,29 +252,70 @@ void keyPressed()
 }//End keyPressed
 //
 void mousePressed() {
-if (mouseX>=buttonX1 && mouseX<=buttonX1 + buttonWidth1 && mouseY>=buttonY1 && mouseY<=buttonY1 + buttonHeight1);
-  if ( song[currentSong].isPlaying() ) { 
+  if (mouseX>=buttonX1 && mouseX<=buttonX1 + buttonWidth1 && mouseY>=buttonY1 && mouseY<=buttonY1 + buttonHeight1) {
+    if ( song[currentSong].isPlaying() ) { 
       song[currentSong].pause();
     } else if ( song[currentSong].position() >= song[currentSong].length()-song[currentSong].length()*1/5 ) {//Special Situation: at the end of the song, rewind (built-in stop button)
+      //End of Song Calculation: hardcode "ending of song" within 1 second of End-Of-File, song1.length()-1000
+      //Alternate End of Song Calculation: listen to 80% of the song, last 20% is "The End"
       song[currentSong].rewind();
       song[currentSong].play();
     } else { 
-      song[currentSong].play();}
-      
- if (mouseX>=buttonX2 && mouseX<=buttonX2 + buttonWidth2 && mouseY>=buttonY2 && mouseY<=buttonY2 + buttonHeight2);
-    song[currentSong].skip(2000);
-    //   
- if (mouseX>=buttonX3 && mouseX<=buttonX3 + buttonWidth3 && mouseY>=buttonY3 && mouseY<=buttonY3 + buttonHeight3);
-    song[currentSong].skip(-4000);
-    //
- if (mouseX>=buttonX4 && mouseX<=buttonX4 + buttonWidth4 && mouseY>=buttonY4 && mouseY<=buttonY4 + buttonHeight4);
+      song[currentSong].play();}}
+
+  if (mouseX>=buttonX2 && mouseX<=buttonX2 + buttonWidth2 && mouseY>=buttonY2 && mouseY<=buttonY2 + buttonHeight2) {
+    song[currentSong].skip( 1000 ); }
+   
+  if (mouseX>=buttonX3 && mouseX<=buttonX3 + buttonWidth3 && mouseY>=buttonY3 && mouseY<=buttonY3 + buttonHeight3) {
+   song[currentSong].skip( -1000 );}
+   
+  if (mouseX>=buttonX4 && mouseX<=buttonX4 + buttonWidth4 && mouseY>=buttonY4 && mouseY<=buttonY4 + buttonHeight4) {
+     if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      if ( currentSong >= numberOfSongs -1 ) {
+        currentSong = numberOfSongs - numberOfSongs;
+    } else { 
+      currentSong++;
+      }
+      song[currentSong].play();
+    } else {
+      song[currentSong].rewind();
+      if (currentSong == numberOfSongs - 1) {
+        currentSong = numberOfSongs - numberOfSongs;
+      } else {
+        currentSong++;
+      }
+     song[currentSong].play();
+    }
+  }
+   if (mouseX>=buttonX5 && mouseX<=buttonX5 + buttonWidth5 && mouseY>=buttonY5 && mouseY<=buttonY5 + buttonHeight5) {
+   if ( song[currentSong].isPlaying() ) {
+      song[currentSong].pause();
+      song[currentSong].rewind();
+      if ( currentSong >= numberOfSongs -1 ) {
+        currentSong = numberOfSongs - numberOfSongs;
+    } else { 
+      currentSong--;
+      }
+      song[currentSong].play();
+    } else {
+      song[currentSong].rewind();
+      if (currentSong == numberOfSongs - 1) {
+        currentSong = numberOfSongs - numberOfSongs;
+      } else {
+        currentSong--;
+      }
+     song[currentSong].play();
+    }
+  }
+    if (mouseX>=buttonX6 && mouseX<=buttonX6 + buttonWidth6 && mouseY>=buttonY6 && mouseY<=buttonY6 + buttonHeight6) {
+     String keystr = String.valueOf(key); //Must press a number
+    int loopNum = int(keystr); //Local Variable plays once and loops loopNum of times
+    song[currentSong].loop(loopNum); }
     
-    //
-if (mouseX>=buttonX5 && mouseX<=buttonX5 + buttonWidth5 && mouseY>=buttonY5 && mouseY<=buttonY5 + buttonHeight5);
-     
- if (mouseX>=buttonX6 && mouseX<=buttonX6 + buttonWidth6 && mouseY>=buttonY6 && mouseY<=buttonY6 + buttonHeight6);
- 
- if (mouseX>=buttonX7 && mouseX<=buttonX7 + buttonWidth7 && mouseY>=buttonY7 && mouseY<=buttonY7 + buttonHeight7);
-}//End mousePressed
+    if (mouseX>=buttonX7 && mouseX<=buttonX7 + buttonWidth7 && mouseY>=buttonY7 && mouseY<=buttonY7 + buttonHeight7) {
+    song[currentSong].loop(1); }
+    }//End mousePressed
 //
 //End MAIN
